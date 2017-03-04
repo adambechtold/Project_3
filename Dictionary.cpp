@@ -4,6 +4,7 @@
 
 #include "Dictionary.h"
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 
 using namespace std;
@@ -26,6 +27,7 @@ Dictionary::Dictionary(string fileName) {
 }
 
 ostream &operator<<(ostream &ostr, const Dictionary &d) {
+
     for(int i = 0; i < d.words.size(); i++) {
         ostr << d.words[i] << endl;
     }
@@ -46,6 +48,25 @@ void Dictionary::selectionSort() {
         }
         swap(this->words[i], this->words[min]);
     }
+}
+
+int Dictionary::lookup(string target) {
+    int first = 0;
+    int last = this->words.size() - 1;
+
+    while (first <= last) {
+        int mid = (first + last) / 2;
+        string midValue = this->words[mid];
+        if (target == midValue) {
+            return mid; //target found. Return index.
+        }
+        else if (target.compare(midValue) < 0)
+            last = mid - 1;
+        else
+            first = mid + 1;
+    }
+    //target not found in the list
+    return -1;
 }
 
 

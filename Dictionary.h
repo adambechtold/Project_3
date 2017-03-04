@@ -22,7 +22,7 @@ public:
 
     void selectionSort();
 
-    int lookup(string word);
+    int lookup(string target);
 };
 
 
