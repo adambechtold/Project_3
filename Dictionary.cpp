@@ -34,4 +34,18 @@ ostream &operator<<(ostream &ostr, const Dictionary &d) {
     return ostr;
 }
 
+void Dictionary::selectionSort() {
+    for(int i = 0; i < this->words.size() - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < this->words.size(); j++) {
+            string currCheck = this->words[j];
+            string currMin = this->words[min];
+            if (currMin.compare(currCheck) > 0) {
+                min = j;
+            }
+        }
+        swap(this->words[i], this->words[min]);
+    }
+}
+
 

@@ -11,6 +11,10 @@ int main() {
     cout << "here is your dictionary: \n";
     cout << d;
 
+    cout << "\nhere is your dictionary sorted :)\n";
+    d.selectionSort();
+    cout << d;
+
     return 0;
     //did this go through?
 }
