@@ -6,7 +6,10 @@ using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    Dictionary d = Dictionary("Dictionary.txt");
+    Dictionary d = Dictionary("TestDictionary.txt");
+
+    cout << "here is your dictionary: \n";
+    cout << d;
 
     return 0;
     //did this go through?
