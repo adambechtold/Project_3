@@ -25,6 +25,8 @@ Grid::Grid(string fileName) {
     int nRow = stoi(nRowStr);
     int nCol = stoi(nColStr);
 
+    this->mat = matrix<string>(nRow, nCol);
+
     string letter;
     for (int i = 0; i < nRow; i++) {
         for(int j = 0; j < nCol; j++) {
@@ -32,9 +34,11 @@ Grid::Grid(string fileName) {
             this->mat[i][j] = letter;
         }
     }
+
+    fin.close();
 }
 
-ostream& operator<< (ostream& ostr, const Grid& g) {
-    ostr << g.mat;
-    return ostr;
-}
+//ostream& operator<< (ostream& ostr, const Grid& g) {
+//    ostr << g.mat;
+//    return ostr;
+//}

@@ -32,7 +32,10 @@ int main() {
 
     Grid g = Grid("15x15grid.txt");
 
-    cout << g;
+    matrix<int> mm = matrix<int>(15, 15);
+
+
+//    cout << g;
 
 
     return 0;
