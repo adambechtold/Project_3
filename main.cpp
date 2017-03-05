@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "Dictionary.h"
+#include "Grid.h"
 #include "d_matrix.h"
 
 using namespace std;
@@ -29,36 +30,9 @@ int main() {
 //    cout << "e: " << e << endl;
 //    cout << "r: " << r << endl;
 
-    ifstream fin;
-    string fileName = "15x15grid.txt";
-    fin.open(fileName);
-    if (!fin){
-        cout << "File access failure.\n";
-    }
-    string nRowStr;
-    string nColStr;
+    Grid g = Grid("15x15grid.txt");
 
-    fin >> nRowStr;
-    fin >> nColStr;
-
-    int nRow = stoi(nRowStr);
-    int nCol = stoi(nColStr);
-
-
-    string letter;
-
-    matrix<string> testMat = matrix<string>(nRow, nCol);
-
-    for (int i = 0; i < nRow; i++) {
-        for(int j = 0; j < nCol; j++) {
-            fin >> letter;
-            testMat[i][j] = letter;
-        }
-        cout << endl;
-    }
-
-    testMat.print();
-
+    cout << g;
 
 
     return 0;

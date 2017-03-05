@@ -40,7 +40,8 @@ public:
 
     ///--------------------------------------------------------------
     /// TODO remove this (maybe)
-    void print();
+    const void print();
+    friend ostream&operator<< (ostream& ostr, const matrix<T>& m);
     ///--------------------------------------------------------------
 
 private:
@@ -118,13 +119,24 @@ void matrix<T>::resize(int numRows, int numCols)
 ///--------------------------------------------------------------
 /// TODO remove this (maybe)
 template <typename T>
-void matrix<T>::print() {
+const void matrix<T>::print() {
     for (int i = 0; i < this->nRows; i++) {
         for (int j = 0; j < this->nCols; j++) {
             cout << this->mat[i][j] << " ";
         }
         cout << endl;
     }
+}
+
+template <typename T>
+ostream& operator<< (ostream& ostr, const matrix<T>& m) {
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            ostr << m[i][j] << " ";
+        }
+        ostr << endl;
+    }
+    return ostr;
 }
 ///--------------------------------------------------------------
 
