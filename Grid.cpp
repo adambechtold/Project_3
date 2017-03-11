@@ -7,7 +7,8 @@
 
 using namespace std;
 
-Grid::Grid(string fileName) {
+Grid::Grid(string fileName)
+{
     //open input file
     ifstream fin;
     fin.open(fileName);
@@ -16,18 +17,13 @@ Grid::Grid(string fileName) {
     }
 
     //gather data from the first two lines of the
-    string nRowStr;
-    string nColStr;
 
-    fin >> nRowStr;
-    fin >> nColStr;
-
-    int nRow = stoi(nRowStr);
-    int nCol = stoi(nColStr);
+    fin >> this->nRow;
+    fin >> this->nCol;
 
     this->mat = matrix<string>(nRow, nCol);
 
-    string letter;
+    char letter;
     for (int i = 0; i < nRow; i++) {
         for(int j = 0; j < nCol; j++) {
             fin >> letter;
@@ -38,7 +34,33 @@ Grid::Grid(string fileName) {
     fin.close();
 }
 
-//ostream& operator<< (ostream& ostr, const Grid& g) {
-//    ostr << g.mat;
-//    return ostr;
-//}
+ostream& operator<< (ostream& ostr, const Grid& g)
+{
+    for (int i = 0; i < g.nRow; i++)
+    {
+        for (int j = 0; j < g.nCol; j++)
+        {
+            cout << g.mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return ostr;
+}
+
+int Grid::Length()
+{
+    return this->nRow;
+}
+
+char Grid::returnChar(int row, int column)
+{
+    vector <string> x;
+    x = this->mat[row];
+    string C = x.at(column);
+
+    return 'c';
+}
+/*
+ * TODO modify the returnChar function to handle the matrix
+ * Determine a way to return a string as a character
+*/

@@ -10,7 +10,8 @@
 using namespace std;
 
 
-Dictionary::Dictionary(string fileName) {
+Dictionary::Dictionary(string fileName)
+{
     ifstream fin;
     fin.open(fileName.c_str());
     if (!fin){
@@ -20,6 +21,8 @@ Dictionary::Dictionary(string fileName) {
     while ( getline (fin,line) )
     {
         //cout << line << '\n';
+        char firstletter = line[0];
+        line[0] = (char)(tolower(firstletter));
         this->words.push_back(line);
     }
 
@@ -36,13 +39,17 @@ ostream &operator<<(ostream &ostr, const Dictionary &d) {
     return ostr;
 }
 
-void Dictionary::selectionSort() {
-    for(int i = 0; i < this->words.size() - 1; i++) {
+void Dictionary::selectionSort()
+{
+    for(int i = 0; i < this->words.size() - 1; i++)
+    {
         int min = i;
-        for (int j = i + 1; j < this->words.size(); j++) {
+        for (int j = i + 1; j < this->words.size(); j++)
+        {
             string currCheck = this->words[j];
             string currMin = this->words[min];
-            if (currMin.compare(currCheck) > 0) {
+            if (currMin.compare(currCheck) > 0)
+            {
                 min = j;
             }
         }
@@ -50,7 +57,7 @@ void Dictionary::selectionSort() {
     }
 }
 
-int Dictionary::lookup(string target) {
+bool Dictionary::lookup(string target) {
     int first = 0;
     int last = this->words.size() - 1;
 
@@ -58,7 +65,9 @@ int Dictionary::lookup(string target) {
         int mid = (first + last) / 2;
         string midValue = this->words[mid];
         if (target == midValue) {
-            return mid; //target found. Return index.
+            cout << midValue; //target found. Return index.
+            //print mid;
+            return true;
         }
         else if (target.compare(midValue) < 0)
             last = mid - 1;
@@ -66,7 +75,26 @@ int Dictionary::lookup(string target) {
             first = mid + 1;
     }
     //target not found in the list
-    return -1;
+    return false;
+}
+
+void Dictionary::writedictionary()
+{
+    ofstream fout;
+    fout.open("SortedDictionary.txt");
+    string word;
+    int i = 0;
+    while (i < this->words.size())
+    {
+        word = this->words.at(i);
+        fout << word << endl;
+        i++;
+    }
+    fout.close();
+    if (!fout)
+    {
+        cout << "Sorted dictionary has successfully been closed";
+    }
 }
 
 
