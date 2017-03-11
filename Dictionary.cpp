@@ -65,7 +65,7 @@ bool Dictionary::lookup(string target) {
         int mid = (first + last) / 2;
         string midValue = this->words[mid];
         if (target == midValue) {
-            cout << midValue; //target found. Return index.
+            //cout << midValue; //target found. Return index.
             //print mid;
             return true;
         }
