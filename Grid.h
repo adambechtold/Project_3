@@ -2,8 +2,7 @@
 // Created by Adam Bechtold on 3/4/17.
 //
 #include "d_matrix.h"
-
-#include <vector>
+#include <cstdlib>
 
 using namespace std;
 

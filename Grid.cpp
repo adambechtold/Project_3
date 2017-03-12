@@ -8,7 +8,8 @@
 
 using namespace std;
 
-Grid::Grid(string fileName) {
+Grid::Grid(string fileName)
+{
     //open input file
     ifstream fin;
     fin.open(fileName);
@@ -39,11 +40,37 @@ Grid::Grid(string fileName) {
     fin.close();
 }
 
-//ostream& operator<< (ostream& ostr, const Grid& g) {
-//    cout << g.mat;
-//    return ostr;
-//}
+ostream& operator<< (ostream& ostr, const Grid& g)
+{
+    for (int i = 0; i < g.nRow; i++)
+    {
+        for (int j = 0; j < g.nCol; j++)
+        {
+            cout << g.mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return ostr;
+}
 
+int Grid::Length()
+{
+    return this->nRow;
+}
+
+char Grid::returnChar(int row, int column)
+{
+    vector <string> x;
+    x = this->mat[row];
+    string C = (basic_string<char, char_traits<char>, allocator<char>> &&) x.at(column);
+    char Ch;
+    Ch = C.at(0);
+    return Ch;
+}
+/*
+ * TODO modify the returnChar function to handle the matrix
+ * Determine a way to return a string as a character
+*/
 vector<string> Grid::findCombos() {
     vector<string> list;
 
