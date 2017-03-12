@@ -1,8 +1,8 @@
 #include <iostream>
-#include <iomanip>
 #include "Dictionary.h"
 #include "Grid.h"
 #include <queue>
+#include <fstream>
 #include "d_matrix.h"
 
 int modval(int a, int b, int mod);
@@ -89,10 +89,34 @@ void findMatches (Grid grid, Dictionary dictionary)
     }
 }
 
-int main() {
-    cout << "Hello, World!" << endl;
+bool search(Dictionary d)
+{
+    string gridname;
+    cout << "Please put the name of the grid you'd like to search" << endl;
+    cin >> gridname;
+    ifstream gridfile;
+    gridfile.open(gridname);
+    if (!gridfile){
+        cout << "Unable to find file.\n";
+        return false;
+    }
+    gridfile.close;
+    else
+    {
+        Grid grid = Grid(gridname);
+        findMatches (grid, d);
+        return true;
+    }
+
+}
+
+int main()
+{
+    bool istrue = false;
     Dictionary testDict = Dictionary("SortedDictionary.txt");
-/*
+    /*
+    Grid g = Grid("15x15.txt");
+    cout << g;
 //    cout << "here is your dictionary: \n";
 //    cout << testDict;
 //    cout << "\nhere is your dictionary sorted :)\n";
@@ -112,11 +136,10 @@ int main() {
 //    cout << "e: " << e << endl;
 //    cout << "r: " << r << endl;
 */
-    Grid g = Grid("15x15.txt");
-
-//    matrix<int> mm = matrix<int>(15, 15);
-    cout << g;
-    findMatches(g, testDict);
+    while (!istrue)
+    {
+        istrue = search(testDict);
+    }
 
     return 0;
     //did this go through?
