@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <vector>
 #include "Grid.h"
 
 using namespace std;
@@ -22,14 +23,14 @@ Grid::Grid(string fileName) {
     fin >> nRowStr;
     fin >> nColStr;
 
-    int nRow = stoi(nRowStr);
-    int nCol = stoi(nColStr);
+    this->nRows = stoi(nRowStr);
+    this->nCols = stoi(nColStr);
 
-    this->mat = matrix<string>(nRow, nCol);
+    this->mat = matrix<string>(this->nRows, this->nCols);
 
     string letter;
-    for (int i = 0; i < nRow; i++) {
-        for(int j = 0; j < nCol; j++) {
+    for (int i = 0; i < this->nRows; i++) {
+        for(int j = 0; j < this->nCols; j++) {
             fin >> letter;
             this->mat[i][j] = letter;
         }
@@ -39,6 +40,24 @@ Grid::Grid(string fileName) {
 }
 
 //ostream& operator<< (ostream& ostr, const Grid& g) {
-//    ostr << g.mat;
+//    cout << g.mat;
 //    return ostr;
 //}
+
+vector<string> Grid::findCombos() {
+    vector<string> list;
+
+
+}
+
+int Grid::getRows() {
+    return this->nRows;
+}
+
+int Grid::getCols() {
+    return this->nCols;
+}
+
+string Grid::getItem(int row, int col) {
+    return this->mat[row][col];
+}

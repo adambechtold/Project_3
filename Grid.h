@@ -2,7 +2,8 @@
 // Created by Adam Bechtold on 3/4/17.
 //
 #include "d_matrix.h"
-#include <cstdlib>
+
+#include <vector>
 
 using namespace std;
 
@@ -13,9 +14,14 @@ using namespace std;
 class Grid {
 public:
     Grid(string fileName);
-    friend ostream& operator<< (ostream& ostr, const Grid& g);
+    //friend ostream& operator<< (ostream& ostr, const Grid& g);
+    vector<string> findCombos();
+    int getRows();
+    int getCols();
+    string getItem(int row, int col);
 private:
     matrix<string> mat;
+    int nRows, nCols;
 };
 
 

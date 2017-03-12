@@ -129,16 +129,17 @@ const void matrix<T>::print() {
 }
 
 //TODO there is an issue with this operator override
-//template <typename T>
-//ostream& operator<< (ostream& ostr, const matrix<T>& m) {
-//    for (int i = 0; i < m.nRows; i++) {
-//        for (int j = 0; j < m.nCols; j++) {
-//            ostr << m[i][j] << " ";
-//        }
-//        ostr << endl;
-//    }
-//    return ostr;
-//}
+template <typename T>
+ostream& operator<< (ostream& ostr, const matrix<T>& m) {
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            ostr << m[i][j];
+            ostr << " ";
+        }
+        ostr << endl;
+    }
+    return ostr;
+}
 ///--------------------------------------------------------------
 
 
