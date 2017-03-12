@@ -42,9 +42,9 @@ Grid::Grid(string fileName)
 
 ostream& operator<< (ostream& ostr, const Grid& g)
 {
-    for (int i = 0; i < g.nRow; i++)
+    for (int i = 0; i < g.nRows; i++)
     {
-        for (int j = 0; j < g.nCol; j++)
+        for (int j = 0; j < g.nCols; j++)
         {
             cout << g.mat[i][j] << " ";
         }
@@ -55,7 +55,7 @@ ostream& operator<< (ostream& ostr, const Grid& g)
 
 int Grid::Length()
 {
-    return this->nRow;
+    return this->nRows;
 }
 
 char Grid::returnChar(int row, int column)
@@ -71,11 +71,7 @@ char Grid::returnChar(int row, int column)
  * TODO modify the returnChar function to handle the matrix
  * Determine a way to return a string as a character
 */
-vector<string> Grid::findCombos() {
-    vector<string> list;
 
-
-}
 
 int Grid::getRows() {
     return this->nRows;

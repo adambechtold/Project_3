@@ -21,7 +21,7 @@ string joinVector(vector<string> v) {
     return result;
 }
 
-void findMatches(Dictionary d, Grid g) {
+void findMatchesAdam(Dictionary d, Grid g) {
     cout << "\nlet's find those matches\n";
 
     int rows = g.getRows();
@@ -169,49 +169,19 @@ void findMatches (Grid grid, Dictionary dictionary)
 int main() {
     cout << "Hello, World!" << endl;
     Dictionary testDict = Dictionary("SortedDictionary.txt");
-/*
-//    cout << "here is your dictionary: \n";
-//    cout << testDict;
-//    cout << "\nhere is your dictionary sorted :)\n";
-//    testDict.selectionSort();
-//    cout << testDict;
-//    testDict.writedictionary();
-    Dictionary testDict = Dictionary("TestDictionary.txt");
 
-    cout << "here is your dictionary: \n";
-    cout << testDict;
-
-    cout << "\nhere is your dictionary sorted :)\n";
-    testDict.selectionSort();
-    cout << testDict;
-
-//    int a = testDict.lookup("a");
-//    int b = testDict.lookup("bactericide");
-//    int c = testDict.lookup("skulls");
-//    int e = testDict.lookup("awarded");
-//    int r = testDict.lookup("unreeves");
-//
-//    cout << "a: " << a << endl;
-//    cout << "b: " << b << endl;
-//    cout << "c: " << c << endl;
-//    cout << "e: " << e << endl;
-//    cout << "r: " << r << endl;
-*/
     Grid g = Grid("15x15.txt");
     Dictionary sortedDict = Dictionary("DictionarySorted.txt");
 
-//    matrix<int> mm = matrix<int>(15, 15);
-    cout << g;
     findMatches(g, testDict);
     Grid g = Grid("15x15grid.txt");
     Grid gSmall = Grid("5x5grid.txt");
 
-    findMatches(sortedDict, gSmall);
-    findMatches(sortedDict, g);
+    findMatchesAdam(sortedDict, gSmall);
+    findMatchesAdam(sortedDict, g);
 
 
     return 0;
-    //did this go through?
 }
 
 int modval(int a, int b, int mod)

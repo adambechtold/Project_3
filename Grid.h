@@ -14,10 +14,15 @@ class Grid {
 public:
     Grid(string fileName);
     //friend ostream& operator<< (ostream& ostr, const Grid& g);
-    vector<string> findCombos();
+
+    //adam's
     int getRows();
     int getCols();
     string getItem(int row, int col);
+
+    //patricks
+    char returnChar(int row, int column);
+    int Length();
 private:
     matrix<string> mat;
     int nRows, nCols;
