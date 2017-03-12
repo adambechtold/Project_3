@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <vector>
 #include "Grid.h"
 
 using namespace std;
@@ -17,15 +18,20 @@ Grid::Grid(string fileName)
     }
 
     //gather data from the first two lines of the
+    string nRowStr;
+    string nColStr;
 
-    fin >> this->nRow;
-    fin >> this->nCol;
+    fin >> nRowStr;
+    fin >> nColStr;
 
-    this->mat = matrix<string>(nRow, nCol);
+    this->nRows = stoi(nRowStr);
+    this->nCols = stoi(nColStr);
 
-    char letter;
-    for (int i = 0; i < nRow; i++) {
-        for(int j = 0; j < nCol; j++) {
+    this->mat = matrix<string>(this->nRows, this->nCols);
+
+    string letter;
+    for (int i = 0; i < this->nRows; i++) {
+        for(int j = 0; j < this->nCols; j++) {
             fin >> letter;
             this->mat[i][j] = letter;
         }
@@ -36,9 +42,9 @@ Grid::Grid(string fileName)
 
 ostream& operator<< (ostream& ostr, const Grid& g)
 {
-    for (int i = 0; i < g.nRow; i++)
+    for (int i = 0; i < g.nRows; i++)
     {
-        for (int j = 0; j < g.nCol; j++)
+        for (int j = 0; j < g.nCols; j++)
         {
             cout << g.mat[i][j] << " ";
         }
@@ -49,7 +55,7 @@ ostream& operator<< (ostream& ostr, const Grid& g)
 
 int Grid::Length()
 {
-    return this->nRow;
+    return this->nRows;
 }
 
 char Grid::returnChar(int row, int column)
@@ -65,3 +71,16 @@ char Grid::returnChar(int row, int column)
  * TODO modify the returnChar function to handle the matrix
  * Determine a way to return a string as a character
 */
+
+
+int Grid::getRows() {
+    return this->nRows;
+}
+
+int Grid::getCols() {
+    return this->nCols;
+}
+
+string Grid::getItem(int row, int col) {
+    return this->mat[row][col];
+}

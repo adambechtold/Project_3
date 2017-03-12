@@ -13,14 +13,19 @@ using namespace std;
 class Grid {
 public:
     Grid(string fileName);
-    int Length();
-    friend ostream& operator<< (ostream& ostr, const Grid& g);
-    char returnChar(int row, int column);
-private:
-    int nRow;
-    int nCol;
-    matrix<string> mat;
+    //friend ostream& operator<< (ostream& ostr, const Grid& g);
 
+    //adam's
+    int getRows();
+    int getCols();
+    string getItem(int row, int col);
+
+    //patricks
+    char returnChar(int row, int column);
+    int Length();
+private:
+    matrix<string> mat;
+    int nRows, nCols;
 };
 
 
