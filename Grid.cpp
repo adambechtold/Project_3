@@ -58,29 +58,6 @@ int Grid::Length()
     return this->nRows;
 }
 
-char Grid::returnChar(int row, int column)
-{
-    vector <string> x;
-    x = this->mat[row];
-    string C = (basic_string<char, char_traits<char>, allocator<char>> &&) x.at(column);
-    char Ch;
-    Ch = C.at(0);
-    return Ch;
-}
-/*
- * TODO modify the returnChar function to handle the matrix
- * Determine a way to return a string as a character
-*/
-
-
-int Grid::getRows() {
-    return this->nRows;
-}
-
-int Grid::getCols() {
-    return this->nCols;
-}
-
 string Grid::getItem(int row, int col) {
     return this->mat[row][col];
 }

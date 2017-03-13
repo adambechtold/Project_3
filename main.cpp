@@ -37,14 +37,15 @@ void findMatches (Grid grid, Dictionary dictionary)
                 mod2 = modval(j, l, length);
                 modj = modval(j, -l, length);
 
-                right.push_back(grid.returnChar(mod1,j));
-                left.push_back(grid.returnChar(modi,j));
-                up.push_back(grid.returnChar(i,mod2));
-                down.push_back(grid.returnChar(i,modj));
-                ur.push_back(grid.returnChar(mod1,mod2));
-                ul.push_back(grid.returnChar(modi,mod2));
-                dr.push_back(grid.returnChar(mod1,modj));
-                dl.push_back(grid.returnChar(modi,modj));
+                right += grid.getItem(mod1,j);
+                left += grid.getItem(modi,j);
+                up += grid.getItem(i,mod2);
+                down += grid.getItem(i,modj);
+                ur += grid.getItem(mod1,mod2);
+                ul += grid.getItem(modi,mod2);
+                dr += grid.getItem(mod1,modj);
+                dl += grid.getItem(modi,modj);
+
                 if (l >= 4)  //determines if index [i][j] can create any words
                 {
                     if (dictionary.lookup(right))
@@ -96,15 +97,11 @@ int main() {
     //Dictionary testDict = Dictionary("SortedDictionary.txt");
 
     Grid g = Grid("15x15grid.txt");
+    Grid gSmall = Grid("5x5grid.txt");
     Dictionary sortedDict = Dictionary("DictionarySorted.txt");
 
-    //findMatches(g, sortedDict);
-
-
-    Grid gSmall = Grid("5x5grid.txt");
-
+    findMatches(g, sortedDict);
     findMatches(gSmall, sortedDict);
-    //findMatchesAdam(sortedDict, g);
 
 
     return 0;
