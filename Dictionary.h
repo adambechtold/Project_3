@@ -22,7 +22,7 @@ public:
 
     void selectionSort();
 
-    bool lookup(string target);
+    bool lookup(string target, int &index);
 
     void writedictionary();
 };

@@ -9,7 +9,7 @@
 using namespace std;
 
 Grid::Grid(string fileName)
-//initializes a grid object, with the gridfile implimented as a matrix
+//initializes a grid object, with the grid file implemented as a matrix
 {
     char letter;
 
@@ -22,15 +22,15 @@ Grid::Grid(string fileName)
     }
 
     //read he number of rows and columns in the grid file
-    fin >> this->nRow;
-    fin >> this->nCol;
+    fin >> this->nRows;
+    fin >> this->nCols;
 
     //initializes an nRow x nCol matrix
     this->mat = matrix<string>(this->nRows, this->nCols);
 
     //adds each character in the gridfile into the matrix
-    for (int i = 0; i < this->nRow; i++) {
-        for(int j = 0; j < this->nCol; j++) {
+    for (int i = 0; i < this->nRows; i++) {
+        for(int j = 0; j < this->nCols; j++) {
             fin >> letter;
             this->mat[i][j] = letter;
         }
@@ -43,9 +43,9 @@ ostream& operator<< (ostream& ostr, const Grid& g)
 //overloads the << operator to print out the contents of the grid
 {
     //prints out each letter of the matrix
-    for (int i = 0; i < g.nRow; i++)
+    for (int i = 0; i < g.nRows; i++)
     {
-        for (int j = 0; j < g.nCol; j++)
+        for (int j = 0; j < g.nCols; j++)
         {
             cout << g.mat[i][j] << " ";
         }
@@ -57,9 +57,10 @@ ostream& operator<< (ostream& ostr, const Grid& g)
 int Grid::Length()
 //returns the length of the grid
 {
-    return this->nRow;
+    return this->nRows;
 }
 
-string Grid::getItem(int row, int col) {
+string Grid::getItem (int row, int col)
+{
     return this->mat[row][col];
 }

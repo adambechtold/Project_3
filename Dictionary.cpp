@@ -29,7 +29,8 @@ Dictionary::Dictionary(string fileName)
     fin.close();
 }
 
-ostream &operator<<(ostream &ostr, const Dictionary &d) {
+ostream &operator<<(ostream &ostr, const Dictionary &d)
+{
 
     for(int i = 0; i < d.words.size(); i++) {
         ostr << d.words[i] << endl;
@@ -57,16 +58,17 @@ void Dictionary::selectionSort()
     }
 }
 
-bool Dictionary::lookup(string target) {
+bool Dictionary::lookup(string target, int &index)
+{
     int first = 0;
-    int last = this->words.size() - 1;
+    int last = (int) this->words.size() - 1;
 
     while (first <= last) {
         int mid = (first + last) / 2;
         string midValue = this->words[mid];
-        if (target == midValue) {
-            //cout << midValue; //target found. Return index.
-            //print mid;
+        if (target == midValue)
+        {
+            index = mid;
             return true;
         }
         else if (target.compare(midValue) < 0)
