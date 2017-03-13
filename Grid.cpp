@@ -21,11 +21,11 @@ Grid::Grid(string fileName)
     string nRowStr;
     string nColStr;
 
-    fin >> nRowStr;
-    fin >> nColStr;
+    fin >> this->nRows;
+    fin >> this->nCols;
 
-    this->nRows = stoi(nRowStr);
-    this->nCols = stoi(nColStr);
+//    this->nRows = stoi(nRowStr);
+//    this->nCols = stoi(nColStr);
 
     this->mat = matrix<string>(this->nRows, this->nCols);
 

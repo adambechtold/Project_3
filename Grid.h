@@ -13,7 +13,7 @@ using namespace std;
 class Grid {
 public:
     Grid(string fileName);
-    //friend ostream& operator<< (ostream& ostr, const Grid& g);
+    friend ostream& operator<< (ostream& ostr, const Grid& g);
 
     //adam's
     int getRows();

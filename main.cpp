@@ -9,6 +9,8 @@ int modval(int a, int b, int mod);
 
 using namespace std;
 
+
+//adams -----------------------------
 void checkAndPrint(string s, Dictionary d) {
     if (d.lookup(s) != -1) {
         cout << s << endl;
@@ -85,12 +87,15 @@ void findMatchesAdam(Dictionary d, Grid g) {
     }
 
 }
+// -----------------------------
 
 void findMatches (Grid grid, Dictionary dictionary)
 {
     string right, left, up, down, ur, ul, dr, dl;
     queue <string> list;
     int mod1, modi, mod2, modj, l;
+    int length = grid.Length();
+
     for (int i = 0; i < grid.Length(); i++)
     {
         for (int j = 0; j < grid.Length(); j++)
@@ -104,12 +109,12 @@ void findMatches (Grid grid, Dictionary dictionary)
             ul.clear();
             dr.clear();
             dl.clear();
-            while (l < 15)
+            while (l < length)
             {
-                mod1 = modval(i, l, 15);
-                modi = modval(i, -l, 15);
-                mod2 = modval(j, l, 15);
-                modj = modval(j, -l, 15);
+                mod1 = modval(i, l, length);
+                modi = modval(i, -l, length);
+                mod2 = modval(j, l, length);
+                modj = modval(j, -l, length);
 
                 right.push_back(grid.returnChar(mod1,j));
                 left.push_back(grid.returnChar(modi,j));
@@ -167,18 +172,18 @@ void findMatches (Grid grid, Dictionary dictionary)
 }
 
 int main() {
-    cout << "Hello, World!" << endl;
-    Dictionary testDict = Dictionary("SortedDictionary.txt");
+    //Dictionary testDict = Dictionary("SortedDictionary.txt");
 
-    Grid g = Grid("15x15.txt");
+    Grid g = Grid("15x15grid.txt");
     Dictionary sortedDict = Dictionary("DictionarySorted.txt");
 
-    findMatches(g, testDict);
-    Grid g = Grid("15x15grid.txt");
+    //findMatches(g, sortedDict);
+
+
     Grid gSmall = Grid("5x5grid.txt");
 
-    findMatchesAdam(sortedDict, gSmall);
-    findMatchesAdam(sortedDict, g);
+    findMatches(gSmall, sortedDict);
+    //findMatchesAdam(sortedDict, g);
 
 
     return 0;
