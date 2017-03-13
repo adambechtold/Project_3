@@ -14,17 +14,16 @@ class Grid {
 public:
     Grid(string fileName);
 
-    friend ostream& operator<< (ostream& ostr, const Grid& g);//adam's
-
-    int Length();
+    friend ostream& operator<< (ostream& ostr, const Grid& g);
 
     string getItem(int row, int col);
 
-private:
-    int nRow, nCol;
+    int Length();
 
+private:
     matrix<string> mat;
 
+    int nRows, nCols;
 };
 
 

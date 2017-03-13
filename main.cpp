@@ -9,6 +9,7 @@ int modval(int a, int b, int mod);
 
 using namespace std;
 
+
 void findMatches (Grid grid, Dictionary dictionary)
 //this function takes in a grid and dictionary, and goes through the entire
 //grid, generates words from the grid, compares them against the dictionary,
@@ -18,6 +19,7 @@ void findMatches (Grid grid, Dictionary dictionary)
     string right, left, up, down, ur, ul, dr, dl;
     queue <string> list; //list to store words found in the dictionary
     int mod1, modi, mod2, modj, l;
+    int length = grid.Length();
 
     for (int i = 0; i < grid.Length(); i++)
     {
@@ -34,21 +36,21 @@ void findMatches (Grid grid, Dictionary dictionary)
             dr.clear();
             dl.clear();
 
-            while (l < 15)
+            while (l < length)
             {
-                mod1 = modval(i, l, 15);
-                modi = modval(i, -l, 15);
-                mod2 = modval(j, l, 15);
-                modj = modval(j, -l, 15);
+                mod1 = modval(i, l, length);
+                modi = modval(i, -l, length);
+                mod2 = modval(j, l, length);
+                modj = modval(j, -l, length);
 
-                right.push_back(grid.returnChar(mod1,j));
-                left.push_back(grid.returnChar(modi,j));
-                up.push_back(grid.returnChar(i,mod2));
-                down.push_back(grid.returnChar(i,modj));
-                ur.push_back(grid.returnChar(mod1,mod2));
-                ul.push_back(grid.returnChar(modi,mod2));
-                dr.push_back(grid.returnChar(mod1,modj));
-                dl.push_back(grid.returnChar(modi,modj));
+                right += grid.getItem(mod1,j);
+                left += grid.getItem(modi,j);
+                up += grid.getItem(i,mod2);
+                down += grid.getItem(i,modj);
+                ur += grid.getItem(mod1,mod2);
+                ul += grid.getItem(modi,mod2);
+                dr += grid.getItem(mod1,modj);
+                dl += grid.getItem(modi,modj);
 
                 //this if statement forces the words to be at least 5 letters
                 //long.  On each loop afterwards, it determines if the current
@@ -131,29 +133,19 @@ bool search(Dictionary d)
     gridfile.close;
 }
 
+
 int main()
 //main function controls the flow of the program.
 //it initializes the dictionary, and searches various grids for suitable words
 {
     bool istrue = false;
     Dictionary testDict = Dictionary("SortedDictionary.txt");
-/*
-//    cout << "here is your dictionary: \n";
-//    cout << testDict;
-//    cout << "\nhere is your dictionary sorted :)\n";
-//    testDict.selectionSort();
-//    cout << testDict;
-//    testDict.writedictionary();
-
-    Grid g = Grid("15x15.txt");
-    Dictionary sortedDict = Dictionary("DictionarySorted.txt");
-
-    findMatches(g, testDict);
     Grid g = Grid("15x15grid.txt");
     Grid gSmall = Grid("5x5grid.txt");
+    Dictionary sortedDict = Dictionary("DictionarySorted.txt");
 
-    findMatchesAdam(sortedDict, gSmall);
-    findMatchesAdam(sortedDict, g);
+    findMatches(g, sortedDict);
+    findMatches(gSmall, sortedDict);
 
 
     return 0;

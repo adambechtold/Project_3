@@ -26,11 +26,11 @@ Grid::Grid(string fileName)
     fin >> this->nCol;
 
     //initializes an nRow x nCol matrix
-    this->mat = matrix<string>(nRow, nCol);
+    this->mat = matrix<string>(this->nRows, this->nCols);
 
     //adds each character in the gridfile into the matrix
-    for (int i = 0; i < nRow; i++) {
-        for(int j = 0; j < nCol; j++) {
+    for (int i = 0; i < this->nRow; i++) {
+        for(int j = 0; j < this->nCol; j++) {
             fin >> letter;
             this->mat[i][j] = letter;
         }
@@ -58,30 +58,6 @@ int Grid::Length()
 //returns the length of the grid
 {
     return this->nRow;
-}
-
-char Grid::returnChar(int row, int column)
-//returns the character from the grid at position [row][column]
-{
-    vector <string> x;
-    x = this->mat[row];
-    string C = (basic_string<char, char_traits<char>, allocator<char>> &&) x.at(column);
-    char Ch;
-    Ch = C.at(0);
-    return Ch;
-}
-/*
- * TODO modify the returnChar function to handle the matrix
- * Determine a way to return a string as a character
-*/
-
-
-int Grid::getRows() {
-    return this->nRows;
-}
-
-int Grid::getCols() {
-    return this->nCols;
 }
 
 string Grid::getItem(int row, int col) {
