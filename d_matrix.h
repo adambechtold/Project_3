@@ -38,12 +38,6 @@ public:
     // Postcondition: the matrix has size numRows x numCols.
     // any new elements are filled with the default value of type T
 
-    ///--------------------------------------------------------------
-    /// TODO remove this (maybe)
-    const void print();
-    friend ostream&operator<< (ostream& ostr, const matrix<T>& m);
-    ///--------------------------------------------------------------
-
 private:
     int nRows, nCols;
     // number of rows and columns
@@ -115,33 +109,5 @@ void matrix<T>::resize(int numRows, int numCols)
     for (i=0; i < nRows; i++)
         mat[i].resize(nCols);
 }
-
-///--------------------------------------------------------------
-/// TODO remove this (maybe)
-template <typename T>
-const void matrix<T>::print() {
-    for (int i = 0; i < this->nRows; i++) {
-        for (int j = 0; j < this->nCols; j++) {
-            cout << this->mat[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
-//TODO there is an issue with this operator override
-template <typename T>
-ostream& operator<< (ostream& ostr, const matrix<T>& m) {
-    for (int i = 0; i < m.nRows; i++) {
-        for (int j = 0; j < m.nCols; j++) {
-            ostr << m[i][j];
-            ostr << " ";
-        }
-        ostr << endl;
-    }
-    return ostr;
-}
-///--------------------------------------------------------------
-
-
 
 #endif	// MATRIX_CLASS

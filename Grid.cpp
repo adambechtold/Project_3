@@ -1,6 +1,12 @@
 //
-// Created by Adam Bechtold on 3/4/17.
+// This is the implementation file for the Grid Class
+// This file contains the implimentations of the grid functions, including the:
+//  -Constructor
+//  -overloaded << operator
+//  -Length function
+//  -getItem function
 //
+
 
 #include <fstream>
 #include <vector>

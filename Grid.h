@@ -1,5 +1,13 @@
 //
-// Created by Adam Bechtold on 3/4/17.
+// This is the header file for the Grid Class
+// This file includes all the functions available to this class, including
+//  -Constructor
+//  -overloaded << operator
+//  -a length function to return the grid side length
+//  -a getItem function, which returns the character at a specified index
+// Includes the private variables:
+//  -mat, a matrix containing the entire grid
+//  -nRows and nCols, specifying the size of the matrix
 //
 #include "d_matrix.h"
 #include <cstdlib>

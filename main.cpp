@@ -2,9 +2,11 @@
 #include "Dictionary.h"
 #include "Grid.h"
 #include <queue>
+#include <iomanip>
 #include "d_matrix.h"
 
 int modval(int a, int b, int mod);
+void printword(const string &word, const int &index, const int i, const int j);
 using namespace std;
 
 
@@ -15,20 +17,19 @@ void findMatches (Grid grid, Dictionary dictionary)
 {
     //initializes the strings we use to keep track of the words made
     string right, left, up, down, ur, ul, dr, dl;
-    queue <string> list; //list to store words found in the dictionary
-    //queue <pair> coordinates;
-    queue <int> dictindex;
     int mod1, modi, mod2, modj, l, index;
     int length = grid.Length();
-    //pair Charindex;
+    cout << "The words will be presented in the following order: \n \n";
+    cout << setw(15) << "Word";
+    cout << setw(25) << "Sorted Dictionary index";
+    cout << setw(15) << "Grid index" << endl;
+    cout << "------------------------------------------------------------\n";
 
     for (int i = 0; i < length; i++)
     {
         for (int j = 0; j < length; j++)
-        {
         //re-initializes counter and strings for each grid starting point
-            //Charindex.first = i;
-            //Charindex.second = j;
+        {
             l = 0;
             right.clear();
             left.clear();
@@ -57,122 +58,36 @@ void findMatches (Grid grid, Dictionary dictionary)
 
                 //ensures the word being looked up is at least 5 letters
                 if (l >= 4) {
-                    //increments the list queue if found.
-                    if (dictionary.lookup(right, index))
-                    {
-                        cout << right << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    if (dictionary.lookup(left, index))
-                    {
-                        cout << left << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
+                    //prints out word if found
+                    if (dictionary.lookup(right) > -1)
+                        printword(right, dictionary.lookup(right), i, j);
 
-                    }
-                    if (dictionary.lookup(up, index))
-                    {
-                        cout << up << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
+                    if (dictionary.lookup(left) > -1)
+                        printword(left, dictionary.lookup(left), i, j);
 
-                    }
-                    if (dictionary.lookup(down, index))
-                    {
-                        cout << down << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    if (dictionary.lookup(ur, index))
-                    {
-                        cout << ur << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    if (dictionary.lookup(ul, index))
-                    {
-                        cout << ul << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    if (dictionary.lookup(dr, index))
-                    {
-                        cout << dr << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    if (dictionary.lookup(dl, index))
-                    {
-                        cout << dl << "\t" << index << "\t(";
-                        cout << i << ", " << j << ")" << endl;
-                    }
-                    /*
-                    //increments the list queue if found.
-                    if (dictionary.lookup(right, index))
-                    {
-                        list.push(right);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                    if (dictionary.lookup(left, index))
-                    {
-                        list.push(left);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
+                    if (dictionary.lookup(up) > -1)
+                        printword(up, dictionary.lookup(up), i, j);
 
-                    }
-                    if (dictionary.lookup(up, index))
-                    {
-                        list.push(up);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
+                    if (dictionary.lookup(down) > -1)
+                        printword(down, dictionary.lookup(down), i, j);
 
-                    }
-                    if (dictionary.lookup(down, index))
-                    {
-                        list.push(down);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                    if (dictionary.lookup(ur, index))
-                    {
-                        list.push(ur);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                    if (dictionary.lookup(ul, index))
-                    {
-                        list.push(ul);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                    if (dictionary.lookup(dr, index))
-                    {
-                        list.push(dr);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                    if (dictionary.lookup(dl, index))
-                    {
-                        list.push(dl);
-                        coordinates.push(Charindex);
-                        dictindex.push(index);
-                    }
-                     */
+                    if (dictionary.lookup(ur) > -1)
+                        printword(ur, dictionary.lookup(ur), i, j);
+
+                    if (dictionary.lookup(ul) > -1)
+                        printword(ul, dictionary.lookup(ul), i, j);
+
+                    if (dictionary.lookup(dr) > -1)
+                        printword(dr, dictionary.lookup(dr), i, j);
+
+                    if (dictionary.lookup(dl) > -1)
+                        printword(dl, dictionary.lookup(dl), i, j);
                 } //end if l >= 4 loop
                 l++;
             } //end the while l < grid.Length() loop
         } //end the column for loop
     } //end the row for loop
-    /*
-    cout << "There were " << list.size() << " words found: " << endl;
-    cout << "The words will be presented in the following order" << endl;
-    cout << "Word\tSorted Dictionary index\tGrid index" << endl;
-    while(!list.empty())
-        //Moves through the list of words, printing them out one by one.
-        //It then removes the word from the list until none are left.
-    {
-        cout << list.front() << "\t" << dictindex.front() << "\t";
-        cout << "(" << coordinates.front() << ")\n";
-        list.pop();
-        dictindex.pop();
-        coordinates.pop();
-    }
-     */
+
 }
 
 void search()
@@ -181,13 +96,14 @@ void search()
 //from the given grid in the dictionary
 {
     Dictionary testDict = Dictionary("SortedDictionary.txt");
+    //testDict.selectionSort();
     string gridname;
     bool found = false;
 
     while (!found)
     {
         cout << "Please put the name of the grid you'd like to search: " << endl;
-        cin >> gridname; //reads gridname from user
+        cin >> gridname; //reads grid name from user
         ifstream gridfile;
         gridfile.open(gridname); //attempts to open gridname
 
@@ -226,4 +142,12 @@ int modval(int a, int b, int mod)
        x = x + mod;
     }
     return x % mod;
+}
+
+void printword(const string &word, const int &index, const int i, const int j)
+{
+    cout << setw(15) << word;
+    cout << setw(25) << index;
+    cout << setw(10) << "(" << i << "," << j << ")\n";
+
 }
