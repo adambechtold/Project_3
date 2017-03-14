@@ -1,12 +1,9 @@
 #include <iostream>
 #include "Dictionary.h"
 #include "Grid.h"
-#include <queue>
 #include <iomanip>
 #include "d_matrix.h"
 
-//modulo function that keeps the output positive
-int modval(int a, int b, int mod);
 
 //prints found words and their information
 void printword(const string &word, const int &index, const int i, const int j);
@@ -21,7 +18,7 @@ void findMatches (Grid grid, Dictionary dictionary)
 {
     //initializes the strings we use to keep track of the words made
     string right, left, up, down, ur, ul, dr, dl;
-    int mod1, modi, mod2, modj, l, index;
+    int moveright, moveleft, moveup, movedown, l, index;
     int length = grid.Length();
     cout << "The words will be presented in the following order: \n \n";
     cout << setw(15) << "Word";
@@ -48,20 +45,21 @@ void findMatches (Grid grid, Dictionary dictionary)
             while (l < length)
             {
 
-                mod1 = modval(i, l, length);
-                modi = modval(i, -l, length);
-                mod2 = modval(j, l, length);
-                modj = modval(j, -l, length);
+
+                moveright = (j + l) % length;
+                moveleft = (i - l + length) % length;
+                moveup = (j + l) % length;
+                movedown = (j - l + length) % length;
 
                 //add each letter to its respective string
-                right += grid.getItem(mod1,j);
-                left += grid.getItem(modi,j);
-                up += grid.getItem(i,mod2);
-                down += grid.getItem(i,modj);
-                ur += grid.getItem(mod1,mod2);
-                ul += grid.getItem(modi,mod2);
-                dr += grid.getItem(mod1,modj);
-                dl += grid.getItem(modi,modj);
+                right += grid.getItem(moveright,j);
+                left += grid.getItem(moveleft,j);
+                up += grid.getItem(i,moveup);
+                down += grid.getItem(i,movedown);
+                ur += grid.getItem(moveright,moveup);
+                ul += grid.getItem(moveleft,moveup);
+                dr += grid.getItem(moveright,movedown);
+                dl += grid.getItem(moveleft,movedown);
 
                 //ensures the word being looked up is at least 5 letters
                 if (l >= 4) {
@@ -105,13 +103,13 @@ void search()
     Dictionary testDict = Dictionary("SortedDictionary.txt");
     //testDict.selectionSort();
     string gridname;
+    ifstream gridfile;
     bool found = false;
 
     while (!found)
     {
         cout << "Please put the name of the grid you'd like to search: " << endl;
         cin >> gridname; //reads grid name from user
-        ifstream gridfile;
         gridfile.open(gridname); //attempts to open gridname
 
         if (!gridfile)
@@ -128,6 +126,7 @@ void search()
             findMatches(grid, testDict);
         }
     }
+    gridfile.close();
 }
 
 
@@ -137,20 +136,6 @@ int main()
     search();
     return 0;
 }
-
-int modval(int a, int b, int mod)
-//modval returns a value between 0 and mod - 1, and is used in place of
-//% as the predefined modulo function cannot handle negative values
-{
-
-    int x = a + b;
-    while (x < 0)
-    {
-       x = x + mod;
-    }
-    return x % mod;
-}
-
 
 void printword(const string &word, const int &index, const int i, const int j)
 //prints out information regarding the word found in the grid
