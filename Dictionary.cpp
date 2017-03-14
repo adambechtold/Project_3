@@ -52,14 +52,14 @@ void Dictionary::selectionSort()
 {
     int size = this->words.size();
     int onePercentBlock = size/100;
-    int currentPercent = 0;
+    int currentPercent = -1;
     for(int i = 0; i < this->words.size() - 1; i++)
     {
         if(i % onePercentBlock == 0) {
             currentPercent++;
-            cout << currentPercent << " ";
+            cout << "\r" << "percent complete: " << currentPercent << "%";
+            cout.flush();
         }
-        cout << "here";
         int min = i;
         for (int j = i + 1; j < this->words.size(); j++)
         {

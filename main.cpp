@@ -150,7 +150,7 @@ void search()
     if(!sorted)
         //sort if necessary
     {
-        cout << "sorting dictionary...\n";
+        cout << "sorting dictionary..." << endl;
         programDict.selectionSort();
     }
 
