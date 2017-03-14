@@ -115,6 +115,9 @@ void Dictionary::writedictionary()
 //writedictionary is used to write the dictionary class into an output file
 //used to write the Sorted Dictionary as a text file, so the 90,000 word
 //dictionary didn't have to be sorted every time
+//
+// it was used during development, and is kept here for you to see even
+// though it is not used during runtime.
 {
     int i = 0;
     string word;
