@@ -102,8 +102,62 @@ void search()
 //if the grid file is found, the function calls findMatches to find the words
 //from the given grid in the dictionary
 {
-    Dictionary testDict = Dictionary("SortedDictionary.txt");
-    //testDict.selectionSort();
+    cout << "Welcome! Let's search for some words!\n\n";
+    cout << "For testing purposes, you can input your own dictionary in stead of ";
+    cout << "waiting for ours to sort.\n";
+    cout << "Enter \"1\" to input the file location of your own dictionary ";
+    cout << "and any other key to continue with ours.\n";
+
+    Dictionary programDict = Dictionary("Dictionary.txt");
+    bool sorted = false;
+
+    string input;
+    cin >> input;
+    if (input == "1") {
+        bool dictReady = false;
+        while (!dictReady) {
+            cout << "Dictionary name: ";
+            cin >> input;
+            ifstream dictfile;
+            dictfile.open(input);
+            if(!dictfile)
+                //checks if the dictionary file works
+            {
+                cout << "Unable to find file.\n";
+                continue;
+            }
+            else
+                //update dicionary with the new file
+            {
+                programDict = Dictionary(input);
+                cout << "Does your dictionary need sorting? (y/n) ";
+                cin >> input;
+                while (input != "y" && input != "n")
+                    //get good response from the user
+                {
+                    cout << "\nTry again. (y/n) ";
+                    cin >> input;
+                }
+
+                if (input == "n")
+                    //change sorted value if this dictionary doesn't need sorting
+                {
+                    sorted = true;
+                }
+                dictReady = true;
+            }
+            dictfile.close();
+        }
+    }
+
+    if(!sorted)
+        //sort if necessary
+    {
+        cout << "sorting dictionary...\n";
+        programDict.selectionSort();
+    }
+
+
     string gridname;
     bool found = false;
 
@@ -125,7 +179,7 @@ void search()
         {
             found = true;
             Grid grid = Grid(gridname);
-            findMatches(grid, testDict);
+            findMatches(grid, programDict);
         }
     }
 }
