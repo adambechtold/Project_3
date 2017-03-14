@@ -50,12 +50,12 @@ void Dictionary::selectionSort()
 //selectionSort uses a selection sort (I know, amazing!) to arrange an unsorted
 //dictionary. It has no input arguments or output values
 {
+    //values track the progress of the search function
     bool percentTrack = true;
     if (this->words.size() < 100) {
         percentTrack = false;
     }
-    int size = this->words.size();
-    int onePercentBlock = size/100;
+    int onePercentBlock = this->words.size()/100;
     int currentPercent = -1;
 
     for(int i = 0; i < this->words.size() - 1; i++)
