@@ -44,8 +44,7 @@ void findMatches (Grid grid, Dictionary dictionary)
             //look in each direction for words
             while (l < length)
             {
-
-
+                //create the correct index to check moving out from the original point
                 moveright = (j + l) % length;
                 moveleft = (i - l + length) % length;
                 moveup = (j + l) % length;
