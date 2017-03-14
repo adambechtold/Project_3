@@ -50,8 +50,16 @@ void Dictionary::selectionSort()
 //selectionSort uses a selection sort (I know, amazing!) to arrange an unsorted
 //dictionary. It has no input arguments or output values
 {
+    int size = this->words.size();
+    int onePercentBlock = size/100;
+    int currentPercent = 0;
     for(int i = 0; i < this->words.size() - 1; i++)
     {
+        if(i % onePercentBlock == 0) {
+            currentPercent++;
+            cout << currentPercent << " ";
+        }
+        cout << "here";
         int min = i;
         for (int j = i + 1; j < this->words.size(); j++)
         {
