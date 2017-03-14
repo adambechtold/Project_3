@@ -5,8 +5,12 @@
 #include <iomanip>
 #include "d_matrix.h"
 
+//modulo function that keeps the output positive
 int modval(int a, int b, int mod);
+
+//prints found words and their information
 void printword(const string &word, const int &index, const int i, const int j);
+
 using namespace std;
 
 
@@ -25,9 +29,9 @@ void findMatches (Grid grid, Dictionary dictionary)
     cout << setw(15) << "Grid index" << endl;
     cout << "------------------------------------------------------------\n";
 
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++) //each row of the grid
     {
-        for (int j = 0; j < length; j++)
+        for (int j = 0; j < length; j++) //each column of the grid
         //re-initializes counter and strings for each grid starting point
         {
             l = 0;
@@ -40,13 +44,16 @@ void findMatches (Grid grid, Dictionary dictionary)
             dr.clear();
             dl.clear();
 
+            //look in each direction for words
             while (l < length)
             {
+
                 mod1 = modval(i, l, length);
                 modi = modval(i, -l, length);
                 mod2 = modval(j, l, length);
                 modj = modval(j, -l, length);
 
+                //add each letter to its respective string
                 right += grid.getItem(mod1,j);
                 left += grid.getItem(modi,j);
                 up += grid.getItem(i,mod2);
@@ -144,7 +151,9 @@ int modval(int a, int b, int mod)
     return x % mod;
 }
 
+
 void printword(const string &word, const int &index, const int i, const int j)
+//prints out information regarding the word found in the grid
 {
     cout << setw(15) << word;
     cout << setw(25) << index;

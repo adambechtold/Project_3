@@ -22,6 +22,7 @@ class Grid {
 public:
     Grid(string fileName);
 
+    //overloaded
     friend ostream& operator<< (ostream& ostr, const Grid& g);
 
     string getItem(int row, int col);

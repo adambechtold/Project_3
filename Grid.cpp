@@ -1,6 +1,6 @@
 //
 // This is the implementation file for the Grid Class
-// This file contains the implimentations of the grid functions, including the:
+// This file contains the implementations of the grid functions, including the:
 //  -Constructor
 //  -overloaded << operator
 //  -Length function
@@ -67,6 +67,7 @@ int Grid::Length()
 }
 
 string Grid::getItem (int row, int col)
+//gets a single character string from the grid's matrix
 {
     return this->mat[row][col];
 }
