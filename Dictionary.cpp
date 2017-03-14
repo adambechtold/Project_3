@@ -50,12 +50,17 @@ void Dictionary::selectionSort()
 //selectionSort uses a selection sort (I know, amazing!) to arrange an unsorted
 //dictionary. It has no input arguments or output values
 {
+    bool percentTrack = true;
+    if (this->words.size() < 100) {
+        percentTrack = false;
+    }
     int size = this->words.size();
     int onePercentBlock = size/100;
     int currentPercent = -1;
+
     for(int i = 0; i < this->words.size() - 1; i++)
     {
-        if(i % onePercentBlock == 0) {
+        if(percentTrack && i % onePercentBlock == 0) {
             currentPercent++;
             cout << "\r" << "percent complete: " << currentPercent << "%";
             cout.flush();
@@ -72,6 +77,7 @@ void Dictionary::selectionSort()
         }
         swap(this->words[i], this->words[min]);
     }
+    cout << endl << endl;
 }
 
 int Dictionary::lookup(string& target)
