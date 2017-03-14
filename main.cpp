@@ -108,6 +108,7 @@ void search()
     Dictionary programDict = Dictionary("Dictionary.txt");
     bool sorted = false;
 
+    //get the correct dictionary from the user if they want to change it
     string input;
     cin >> input;
     if (input == "1") {
@@ -154,7 +155,7 @@ void search()
         programDict.selectionSort();
     }
 
-
+    //get the grid that the user wants to search
     string gridname;
     ifstream gridfile;
     bool found = false;
@@ -196,5 +197,4 @@ void printword(const string &word, const int &index, const int i, const int j)
     cout << setw(15) << word;
     cout << setw(25) << index;
     cout << setw(10) << "(" << i << "," << j << ")\n";
-
 }
