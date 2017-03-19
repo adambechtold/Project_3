@@ -46,19 +46,19 @@ void findMatches (Grid grid, Dictionary dictionary)
             {
                 //create the correct index to check moving out from the original point
                 moveright = (j + l) % length;
-                moveleft = (i - l + length) % length;
-                moveup = (j + l) % length;
-                movedown = (j - l + length) % length;
+                moveleft = (j - l + length) % length;
+                moveup = (i + l) % length;
+                movedown = (i - l + length) % length;
 
                 //add each letter to its respective string
-                right += grid.getItem(moveright,j);
-                left += grid.getItem(moveleft,j);
-                up += grid.getItem(i,moveup);
-                down += grid.getItem(i,movedown);
-                ur += grid.getItem(moveright,moveup);
-                ul += grid.getItem(moveleft,moveup);
-                dr += grid.getItem(moveright,movedown);
-                dl += grid.getItem(moveleft,movedown);
+                right += grid.getItem(i,moveright);
+                left += grid.getItem(i,moveleft);
+                up += grid.getItem(moveup, j);
+                down += grid.getItem(movedown, j);
+                ur += grid.getItem(moveup, moveright);
+                ul += grid.getItem(moveup,moveleft);
+                dr += grid.getItem(movedown,moveright);
+                dl += grid.getItem(movedown,moveleft);
 
                 //ensures the word being looked up is at least 5 letters
                 if (l >= 4) {
@@ -108,6 +108,7 @@ void search()
     Dictionary programDict = Dictionary("Dictionary.txt");
     bool sorted = false;
 
+    //get the correct dictionary from the user if they want to change it
     string input;
     cin >> input;
     if (input == "1") {
@@ -154,7 +155,7 @@ void search()
         programDict.selectionSort();
     }
 
-
+    //get the grid that the user wants to search
     string gridname;
     ifstream gridfile;
     bool found = false;
@@ -196,5 +197,4 @@ void printword(const string &word, const int &index, const int i, const int j)
     cout << setw(15) << word;
     cout << setw(25) << index;
     cout << setw(10) << "(" << i << "," << j << ")\n";
-
 }
