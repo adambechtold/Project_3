@@ -82,7 +82,7 @@ void Dictionary::selectionSort()
 
 int partitionHelp(vector<string> &A, int left, int right) {
     string pivot = A[(left + right) / 2];
-    while(left <= right) {
+    while(left != right) {
         while(A[left].compare(pivot) < 0) {
             left++;
         }

@@ -190,6 +190,11 @@ int main()
     //search();
 
     Dictionary d = Dictionary("TestDictionary.txt");
+    cout << d;
+    cout << "get ready to sort" << endl;
+    string x = "x";
+    d.quickSort();
+    cout << d;
     return 0;
 }
 
