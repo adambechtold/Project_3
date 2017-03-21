@@ -30,6 +30,8 @@ public:
 
     void selectionSort();
 
+    void quickSort();
+
     int lookup(string& target);
 
     void writedictionary();

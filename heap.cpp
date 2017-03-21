@@ -7,7 +7,7 @@
 #include "heap.h"
 
 
-Heap::Heap(vector list)
+Heap::Heap(vector<string> list)
 //constructor for the Heap class, generates a vector of template type T
 //Takes in a vector, and for the length of the input vector, adds the input
 //vector's values to it's own vector

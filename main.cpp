@@ -187,7 +187,9 @@ void search()
 int main()
 //calls search function and returns 0
 {
-    search();
+    //search();
+
+    Dictionary d = Dictionary("TestDictionary.txt");
     return 0;
 }
 

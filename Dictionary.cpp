@@ -80,6 +80,39 @@ void Dictionary::selectionSort()
     cout << endl << endl;
 }
 
+int partitionHelp(vector<string> &A, int left, int right) {
+    string pivot = A[(left + right) / 2];
+    while(left <= right) {
+        while(A[left].compare(pivot) < 0) {
+            left++;
+        }
+
+        while(A[right].compare(pivot) > 0) {
+            right--;
+        }
+
+        if(left <= right) {
+            swap(A[left], A[right]);
+        }
+    }
+    return left;
+}
+
+void quickSortHelp(vector<string> &A, int left, int right) {
+    if (left < right) {
+        int s = partitionHelp(A, left, right);
+        quickSortHelp(A, left, s - 1);
+        quickSortHelp(A, s + 1, right);
+    }
+}
+
+void Dictionary::quickSort()
+//sort the words of the dictionary with the quicksort algorithm
+{
+    quickSortHelp(this->words, 0, this->words.size() - 1);
+}
+
+
 int Dictionary::lookup(string& target)
 //lookup is handed a string, and uses a binary search to try and find
 //the string in the list.  If found, lookup returns the index from the
