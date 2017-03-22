@@ -5,6 +5,8 @@
 #include <iomanip>
 #include "d_matrix.h"
 
+#include "genTest.h"
+#include <vector>
 
 //prints found words and their information
 void printword(const string &word, const int &index, const int i, const int j);
@@ -95,12 +97,11 @@ void findMatches (Grid grid, Dictionary dictionary)
 
 }
 
-void search()
+void search(int n)
 //search takes in a dictionary, asks the user for the name of a grid to search
 //if the grid file is found, the function calls findMatches to find the words
 //from the given grid in the dictionary
 {
-    cout << "Welcome! Let's search for some words!\n\n";
     cout << "For testing purposes, you can input your own dictionary in stead of ";
     cout << "waiting for ours to sort.\n";
     cout << "Enter \"1\" to input the file location of your own dictionary ";
@@ -153,6 +154,7 @@ void search()
         //sort if necessary
     {
         cout << "sorting dictionary..." << endl;
+
         programDict.selectionSort();
     }
 
@@ -188,14 +190,15 @@ void search()
 int main()
 //calls search function and returns 0
 {
+    cout << "Welcome! Let's search for some words!\n\n";
+    cout << ""
     //search();
     Dictionary d = Dictionary("TestDictionary.txt");
     cout << d;
     cout << "get ready to sort" << endl;
-    string x = "x";
-    d.heapSort();
-    //d.quickSort();
-    cout << d;
+    cout << "-----------------\n\n\n";
+
+
     return 0;
 }
 
