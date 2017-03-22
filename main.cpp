@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Dictionary.h"
 #include "Grid.h"
+#include "Heap.h"
 #include <iomanip>
 #include "d_matrix.h"
 
@@ -188,12 +189,12 @@ int main()
 //calls search function and returns 0
 {
     //search();
-
     Dictionary d = Dictionary("TestDictionary.txt");
     cout << d;
     cout << "get ready to sort" << endl;
     string x = "x";
-    d.quickSort();
+    d.heapSort();
+    //d.quickSort();
     cout << d;
     return 0;
 }

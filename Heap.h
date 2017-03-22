@@ -2,7 +2,6 @@
 // Created by Patrick on 3/15/17.
 //
 
-/*
 
 #ifndef PROJECT_3_HEAP_H
 #define PROJECT_3_HEAP_H
@@ -12,22 +11,21 @@
 using namespace std;
 
 template <typename T>
-class Heap {
+class Heap
+{
 
 public:
     Heap(vector <T> list);
 
-    T parent (int& index);
+    int parent (int& index);
 
-    T left (int& index);
+    int left (int& index);
 
-    T right (int& index);
+    int right (int& index);
 
     T getItem (int& index);
 
     void heapSort ();
-
-    void initializeMaxHeap();
 
     void maxHeapify(int i);
 
@@ -35,9 +33,8 @@ public:
 private:
     vector <T> heaplist;
 
-    int length;
+    long length;
 };
 
 #endif //PROJECT_3_HEAP_H
 
- */

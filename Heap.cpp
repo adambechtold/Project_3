@@ -2,34 +2,34 @@
 // Created by Patrick on 3/15/17.
 //
 
-/*
 
 #include <vector>
 #include <cmath>
-#include "heap.h"
+#include "Heap.h"
 
-
-Heap::Heap(vector<string> list)
+template<typename T>
+Heap<T>::Heap(vector<string> list)
 //constructor for the Heap class, generates a vector of template type T
 //Takes in a vector, and for the length of the input vector, adds the input
 //vector's values to it's own vector
 {
+    this->length = list.size();
     for (int i = 0; i < list.size(); i++)
         this->heaplist.push_back(list[i]);
 }
 
-template <typename T>
-T Heap::parent(int &index)
-//Parent takes in the index of a word, determnes what it's parent is in the heap
+template<typename T>
+int Heap<T>::parent(int &index)
+//Parent takes in the index of a word, determines what it's parent is in the heap
 //and returns the index to find the parent at
 {
     int par = (int) floor(index/2);
     return par;
 }
 
-template <typename T>
-T Heap::left(int &index)
-//Left takes in the index of a word, determnes what it's left child is
+template<typename T>
+int Heap<T>::left(int &index)
+//Left takes in the index of a word, determines what it's left child is
 //in the heap, and returns this value's index
 {
     if (2 * index > this->length)
@@ -43,9 +43,9 @@ T Heap::left(int &index)
     }
 }
 
-template <typename T>
-T Heap::right(int &index)
-//Left takes in the index of a word, determnes what it's left child is
+template<typename T>
+int Heap<T>::right(int &index)
+//Left takes in the index of a word, determines what it's left child is
 //in the heap, and returns this value's index
 {
     if (2*index >= this->length)
@@ -60,38 +60,40 @@ T Heap::right(int &index)
 }
 
 template <typename T>
-T Heap::getItem(int &index)
+T Heap<T>::getItem(int &index)
 //getItem returns the value at a specified index
 {
     return heaplist[index];
 }
 
-void Heap::heapSort()
+template<typename T>
+void Heap<T>::heapSort()
 //sorts the entire vector heaplist, using a heap sort algorithm
 {
-
+    buildMaxHeap();
+    for (int i = (int) this->length; i > 0; i--)
+    {
+        swap(this->heaplist[1], this->heaplist[i]);
+        this->length--;
+        maxHeapify(1);
+    }
 }
 
-void Heap::initializeMaxHeap()
-//TODO: I'm not entirely sure what she wants us to use this function for
-// We already have a heap class constructor, and a heapSort function
-{
-}
-
-void Heap::maxHeapify(int i)
+template<typename T>
+void Heap<T>::maxHeapify(int i)
 //maxHeapify checks to make sure
 {
     int largest, l, r;
-    l = this->left(i);
-    r = this->right(i);
+    l = left(i);
+    r = right(i);
 
-    if (l <= this->length && this->getItem(l) > this->getItem(i))
+    if (0 < l <= this->length && this->getItem(l) > this->getItem(i))
         largest = l;
 
     else
         largest = i;
 
-    if (r <= this->length && this->getItem(r) > this->getItem(i))
+    if (0 < r <= this->length && this->getItem(r) > this->getItem(i))
         largest = r;
 
     if (largest != i)
@@ -101,10 +103,9 @@ void Heap::maxHeapify(int i)
     }
 }
 
-void Heap::buildMaxHeap() {
-
+template<typename T>
+void Heap<T>::buildMaxHeap()
+{
+    for (int i = (int) (floor(this->length / 2)); i > 0; i--)
+        maxHeapify(i);
 }
-
-
-
-*/

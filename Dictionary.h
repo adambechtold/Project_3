@@ -32,6 +32,8 @@ public:
 
     void quickSort();
 
+    void heapSort();
+
     int lookup(string& target);
 
     void writedictionary();

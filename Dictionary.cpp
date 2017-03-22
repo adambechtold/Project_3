@@ -9,6 +9,7 @@
 //
 
 #include "Dictionary.h"
+#include "Heap.h"
 #include <iostream>
 #include <iomanip>
 
@@ -80,7 +81,8 @@ void Dictionary::selectionSort()
     cout << endl << endl;
 }
 
-int partitionHelp(vector<string> &A, int left, int right) {
+int partitionHelp(vector<string> &A, int left, int right)
+{
     string pivot = A[(left + right) / 2];
     while(left != right) {
         while(A[left].compare(pivot) < 0) {
@@ -98,7 +100,8 @@ int partitionHelp(vector<string> &A, int left, int right) {
     return left;
 }
 
-void quickSortHelp(vector<string> &A, int left, int right) {
+void quickSortHelp(vector<string> &A, int left, int right)
+{
     if (left < right) {
         int s = partitionHelp(A, left, right);
         quickSortHelp(A, left, s - 1);
@@ -110,6 +113,18 @@ void Dictionary::quickSort()
 //sort the words of the dictionary with the quicksort algorithm
 {
     quickSortHelp(this->words, 0, this->words.size() - 1);
+}
+
+void Dictionary::heapSort()
+//sort the words of the dictionary with the heapsort algorithm
+{
+    Heap h = Heap(this->words);
+    h.heapSort();
+    for (int i = 0; i < this->(words.size()); i++)
+    {
+        words[i] = h.getItem(i);
+    }
+
 }
 
 
