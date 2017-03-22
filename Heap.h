@@ -15,7 +15,7 @@ class Heap
 {
 
 public:
-    Heap(vector <T> list);
+    Heap(vector<T> list);
 
     int parent (int& index);
 
@@ -31,7 +31,7 @@ public:
 
     void buildMaxHeap();
 private:
-    vector <T> heaplist;
+    vector<T> heaplist;
 
     long length;
 };

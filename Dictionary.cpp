@@ -12,6 +12,7 @@
 #include "Heap.h"
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -82,6 +83,7 @@ void Dictionary::selectionSort()
 }
 
 int partitionHelp(vector<string> &A, int left, int right)
+// rearrange the vector according to the given boundary indices
 {
     string pivot = A[(left + right) / 2];
     while(left != right) {
@@ -101,6 +103,7 @@ int partitionHelp(vector<string> &A, int left, int right)
 }
 
 void quickSortHelp(vector<string> &A, int left, int right)
+//quick sort algorithm that is passed the parameters of the dictionary
 {
     if (left < right) {
         int s = partitionHelp(A, left, right);
@@ -118,13 +121,12 @@ void Dictionary::quickSort()
 void Dictionary::heapSort()
 //sort the words of the dictionary with the heapsort algorithm
 {
-    Heap h = Heap(this->words);
+    Heap<string> h = Heap<string>(this->words);
     h.heapSort();
-    for (int i = 0; i < this->(words.size()); i++)
+    for (int i = 0; i < this->words.size(); i++)
     {
         words[i] = h.getItem(i);
     }
-
 }
 
 

@@ -8,7 +8,7 @@
 #include "Heap.h"
 
 template<typename T>
-Heap<T>::Heap(vector<string> list)
+Heap<T>::Heap(vector<T> list)
 //constructor for the Heap class, generates a vector of template type T
 //Takes in a vector, and for the length of the input vector, adds the input
 //vector's values to it's own vector
@@ -63,7 +63,7 @@ template <typename T>
 T Heap<T>::getItem(int &index)
 //getItem returns the value at a specified index
 {
-    return heaplist[index];
+    return this->heaplist[index];
 }
 
 template<typename T>
@@ -71,7 +71,7 @@ void Heap<T>::heapSort()
 //sorts the entire vector heaplist, using a heap sort algorithm
 {
     buildMaxHeap();
-    for (int i = (int) this->length; i > 0; i--)
+    for (int i = (int)this->length; i > 0; i--)
     {
         swap(this->heaplist[1], this->heaplist[i]);
         this->length--;
