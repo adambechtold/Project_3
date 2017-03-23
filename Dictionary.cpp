@@ -12,7 +12,6 @@
 #include "Heap.h"
 #include <iostream>
 #include <iomanip>
-#include <string>
 
 using namespace std;
 
@@ -22,10 +21,12 @@ Dictionary::Dictionary(string fileName)
 {
     ifstream fin;
     fin.open(fileName.c_str());
-    if (!fin){
+
+    if (!fin)
         cout << "File access failure.\n";
-    }
+
     string line;
+
     while ( getline (fin,line) )
     {
         char firstletter = line[0];
@@ -39,11 +40,8 @@ Dictionary::Dictionary(string fileName)
 ostream &operator<<(ostream &ostr, const Dictionary &d)
 //overloads the << operator to print out the contents of the dictionary
 {
-
-    for(int i = 0; i < d.words.size(); i++) {
+    for(int i = 0; i < d.words.size(); i++)
         ostr << d.words[i] << endl;
-    }
-
 
     return ostr;
 }
@@ -54,28 +52,30 @@ void Dictionary::selectionSort()
 {
     //values track the progress of the search function
     bool percentTrack = true;
-    if (this->words.size() < 100) {
+
+    if (this->words.size() < 100)
         percentTrack = false;
-    }
+
     int onePercentBlock = this->words.size()/100;
     int currentPercent = -1;
 
     for(int i = 0; i < this->words.size() - 1; i++)
     {
-        if(percentTrack && i % onePercentBlock == 0) {
+        if(percentTrack && i % onePercentBlock == 0)
+        {
             currentPercent++;
             cout << "\r" << "percent complete: " << currentPercent << "%";
             cout.flush();
         }
         int min = i;
+
         for (int j = i + 1; j < this->words.size(); j++)
         {
             string currCheck = this->words[j];
             string currMin = this->words[min];
+
             if (currMin.compare(currCheck) > 0)
-            {
                 min = j;
-            }
         }
         swap(this->words[i], this->words[min]);
     }
@@ -86,18 +86,17 @@ int partitionHelp(vector<string> &A, int left, int right)
 // rearrange the vector according to the given boundary indices
 {
     string pivot = A[(left + right) / 2];
-    while(left != right) {
-        while(A[left].compare(pivot) < 0) {
+
+    while(left != right)
+    {
+        while(A[left].compare(pivot) < 0)
             left++;
-        }
 
-        while(A[right].compare(pivot) > 0) {
+        while(A[right].compare(pivot) > 0)
             right--;
-        }
 
-        if(left <= right) {
+        if(left <= right)
             swap(A[left], A[right]);
-        }
     }
     return left;
 }
@@ -105,7 +104,8 @@ int partitionHelp(vector<string> &A, int left, int right)
 void quickSortHelp(vector<string> &A, int left, int right)
 //quick sort algorithm that is passed the parameters of the dictionary
 {
-    if (left < right) {
+    if (left < right)
+    {
         int s = partitionHelp(A, left, right);
         quickSortHelp(A, left, s - 1);
         quickSortHelp(A, s + 1, right);
@@ -121,12 +121,11 @@ void Dictionary::quickSort()
 void Dictionary::heapSort()
 //sort the words of the dictionary with the heapsort algorithm
 {
-    Heap<string> h = Heap<string>(this->words);
+    Heap h = Heap (this->words);
     h.heapSort();
+
     for (int i = 0; i < this->words.size(); i++)
-    {
         words[i] = h.getItem(i);
-    }
 }
 
 
@@ -145,14 +144,15 @@ int Dictionary::lookup(string& target)
         //establishes mid point of array
         int mid = (first + last) / 2;
         string midValue = this->words[mid];
+
         if (target == midValue)
         //if target is found, return the index found at
-        {
             return mid;
-        }
+
         else if (target.compare(midValue) < 0)
         //if the target come before the mid value, search the first half
             last = mid - 1;
+
         else
          //otherwise, search the second half of the list
             first = mid + 1;

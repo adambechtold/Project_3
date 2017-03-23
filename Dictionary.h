@@ -3,7 +3,7 @@
 // This file includes all the functions available to this class, including
 //  -Constructor
 //  -overloaded << operator
-//  -a selectionSort function to sort the entire dictionary
+//  -a three functions to sort the dictionary (quickSort, heapSort, and selectionSort)
 //  -a lookup function, which tries to find a given string, and returns the index
 //  -a writeDictionary function, which writes the dictionary to a new file
 // Includes the private variables:
