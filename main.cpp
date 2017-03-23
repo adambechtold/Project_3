@@ -99,8 +99,7 @@ void search(int n)
 //if the grid file is found, the function calls findMatches to find the words
 //from the given grid in the dictionary
 {
-//    Dictionary programDict = Dictionary("Dictionary.txt");
-    Dictionary programDict = Dictionary("testD.txt");
+    Dictionary programDict = Dictionary("Dictionary.txt");
 
     cout << "sorting dictionary..." << endl;
 

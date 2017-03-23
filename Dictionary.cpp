@@ -85,9 +85,10 @@ void Dictionary::selectionSort()
 int partitionHelp(vector<string> &A, int left, int right)
 // rearrange the vector according to the given boundary indices
 {
-    string pivot = A[(left + right) / 2];
+    int mid = (left + right) /2;
+    string pivot = A[mid];
 
-    while(left != right)
+    while(left <= right)
     {
         while(A[left].compare(pivot) < 0)
             left++;
@@ -95,8 +96,11 @@ int partitionHelp(vector<string> &A, int left, int right)
         while(A[right].compare(pivot) > 0)
             right--;
 
-        if(left <= right)
+        if(left <= right) {
             swap(A[left], A[right]);
+            left++;
+            right--;
+        }
     }
     return left;
 }
