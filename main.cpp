@@ -1,12 +1,9 @@
 #include <iostream>
 #include "Dictionary.h"
 #include "Grid.h"
-#include "Heap.h"
 #include <iomanip>
 #include "d_matrix.h"
 
-#include "genTest.h"
-#include <vector>
 
 //prints found words and their information
 void printword(const string &word, const int &index, const int i, const int j);
@@ -102,60 +99,18 @@ void search(int n)
 //if the grid file is found, the function calls findMatches to find the words
 //from the given grid in the dictionary
 {
-    cout << "For testing purposes, you can input your own dictionary in stead of ";
-    cout << "waiting for ours to sort.\n";
-    cout << "Enter \"1\" to input the file location of your own dictionary ";
-    cout << "and any other key to continue with ours.\n";
+//    Dictionary programDict = Dictionary("Dictionary.txt");
+    Dictionary programDict = Dictionary("testD.txt");
 
-    Dictionary programDict = Dictionary("Dictionary.txt");
-    bool sorted = false;
+    cout << "sorting dictionary..." << endl;
 
-    //get the correct dictionary from the user if they want to change it
-    string input;
-    cin >> input;
-    if (input == "1") {
-        bool dictReady = false;
-        while (!dictReady) {
-            cout << "Dictionary name: ";
-            cin >> input;
-            ifstream dictfile;
-            dictfile.open(input);
-            if(!dictfile)
-                //checks if the dictionary file works
-            {
-                cout << "Unable to find file.\n";
-                continue;
-            }
-            else
-                //update dicionary with the new file
-            {
-                programDict = Dictionary(input);
-                cout << "Does your dictionary need sorting? (y/n) ";
-                cin >> input;
-                while (input != "y" && input != "n")
-                    //get good response from the user
-                {
-                    cout << "\nTry again. (y/n) ";
-                    cin >> input;
-                }
-
-                if (input == "n")
-                    //change sorted value if this dictionary doesn't need sorting
-                {
-                    sorted = true;
-                }
-                dictReady = true;
-            }
-            dictfile.close();
-        }
-    }
-
-    if(!sorted)
-        //sort if necessary
-    {
-        cout << "sorting dictionary..." << endl;
-
-        programDict.selectionSort();
+    //sort the dictionary based on the user's selections
+    switch(n) {
+        case 1 :    programDict.selectionSort();
+            break;
+        case 2 : programDict.quickSort();
+            break;
+        default: programDict.heapSort();
     }
 
     //get the grid that the user wants to search
@@ -191,14 +146,10 @@ int main()
 //calls search function and returns 0
 {
     cout << "Welcome! Let's search for some words!\n\n";
-    cout << ""
-    //search();
-    Dictionary d = Dictionary("TestDictionary.txt");
-    cout << d;
-    cout << "get ready to sort" << endl;
-    cout << "-----------------\n\n\n";
-
-
+    cout << "Start by selection your sort method!\n1: Selection sort\n2: Quick Sort\n3: Heap sort\nYour choice: ";
+    int input;
+    cin >> input; //user selects sorting method
+    search(input);
     return 0;
 }
 
