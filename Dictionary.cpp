@@ -121,7 +121,7 @@ void Dictionary::quickSort()
 void Dictionary::heapSort()
 //sort the words of the dictionary with the heapsort algorithm
 {
-    Heap h = Heap (this->words);
+    Heap<string> h = Heap<string>(this->words);
     h.heapSort();
 
     for (int i = 0; i < this->words.size(); i++)
